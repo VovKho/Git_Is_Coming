@@ -9,6 +9,20 @@ int my_strlen (const char *string) {
     return ++i; 
 }//работает
 
+int my_strcmp (char *string1, char *string2) {
+    int i = 0;
+    int j = 0;
+    while (*(string1 + j) == *(string2 + j)) {j++;}
+    if ((int)*(string1 + j) > (int)*(string2 +j)) {
+        i = 1;
+    }
+    else if ((int)*(string1 + j) < (int)*(string2 +j)) {
+        i = -1;
+    }
+    
+    return i;
+}
+
 char *my_strcpy (char *string2, const char* string1) {
     int j = 0;
     for (j = 0; j < my_strlen(string1); j++) {
@@ -54,14 +68,32 @@ char *my_memchr (char *string1, char symbol, int len) {
     }
 }
 
+char *my_memset (char *string, char symbol, int len) {
+    for (int i = 0; i < len; i++) {
+        *(string + i) = symbol;
+    }
+    return string;
+}
+
 /*char *my_strstr (char *string1, char *string2) {
+    int len = my_strlen (string2);
+    int i = 0;
+    int j = 0;
+    while (i < my_strlen (string1)) {
+        while (j < len) {
+            while (*(string1 + i + j) )
+        } 
+    }
+}
+
+char *my_strstr (char *string1, char *string2) {
     int len_1 = my_strlen(string1), len_2 = my_strlen(string2);
     char string3[16] = "";        
 
 
         //if *(string1 + i) == *(string2) && *(string1 + i + 1) == *(string2 + 1) && (...) ==> ответ 
         //надо попробовать через strchr и memchr
-}
+}*/
 
 
 

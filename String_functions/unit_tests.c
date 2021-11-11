@@ -1,6 +1,7 @@
 //geroyam slava
-#include "functions.c"
-
+#include <stdio.h>
+#include <string.h>
+#include "functions.h"
 
 void test_my_strlen () { //работает
     char string[] = "hello";
@@ -8,6 +9,15 @@ void test_my_strlen () { //работает
         printf ("test_my_strlen - YES\n");
     } else {
         printf ("test_my_strlen - NO\n");
+    }
+}
+
+void test_my_strcmp () {
+    char *string1 = "kek", *string2 = "kfkf";
+    if (my_strcmp (string1, string2) == -1) {
+        printf ("test_my_strcmp - YES\n");
+    } else {
+        printf ("test_my_strcmp - NO\n");
     }
 }
 
@@ -56,6 +66,13 @@ void test_my_memchr () {
     }
 }
 
+void test_my_memset () {
+    char string[] = "hello";
+    char symbol = 'a';
+    char len = 4;
+    printf ("%s", my_memset (string, symbol, len));
+}
+
 /*void test_my_strstr () {
     char string1[] = "abcbcc";
     char string2[] = "bcb";
@@ -66,18 +83,12 @@ void test_my_memchr () {
     }
 }*/
 
-/*void test_my_strcpm () {
-    char string1[] = "hello";
-    char string2[] = "help";
-    printf ("%s", strcpm (string1, string2));
-}*/
-
-
 void run_tests () {
     test_my_strlen ();
+    test_my_strcmp ();
     test_my_strcpy ();
     test_my_memcpy ();
     test_my_strchr ();
     test_my_memchr ();
-    test_my_strcpm ();
+    test_my_memset ();
 }
