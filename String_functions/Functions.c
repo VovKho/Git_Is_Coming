@@ -1,26 +1,21 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 int my_strlen (const char *string) {
     int i = 0;
     while (*(string + i) != '\0') {
         i++;
     }
-    return ++i; 
+    return i;
 }//работает
 
 int my_strcmp (char *string1, char *string2) {
-    int i = 0;
-    int j = 0;
-    while (*(string1 + j) == *(string2 + j)) {j++;}
-    if ((int)*(string1 + j) > (int)*(string2 +j)) {
-        i = 1;
+    while (*(string1) == *string2 && *string1 != '\0') {
+        string1++;
+        string2++;
     }
-    else if ((int)*(string1 + j) < (int)*(string2 +j)) {
-        i = -1;
-    }
-    
-    return i;
+    return *string1 - *string2;
 }
 
 char *my_strcpy (char *string2, const char* string1) {
@@ -41,28 +36,30 @@ char *my_memcpy (char *string2, const char *string1, int len) {
     return string2;
 }
 
+/*char* my_strdup (char *string) {
+    char *string2 = calloc (strlen(string), sizeof(char));
+    return my_strcpy (string2, string);
+}*/
+
 char *my_strchr (char *string1, char symbol) {
     int i = 0;
     while (*(string1 + i) != symbol && *(string1 + i) != '\0') {
         i++;
     }
     if (*(string1 + i) == symbol) {
-        /*for (int j = 0; j < (my_strlen(string1) - i); j++) {
-            *(string2 + j) = *(string1 + i - 1 + j);
-        }*/
         return (string1 + i);
     } else {
         return NULL;
     }
 }
 
-char *my_memchr (char *string1, char symbol, int len) {
+char *my_memchr (char *string, char symbol, int len) {
     int i = 0;
-    while (*(string1 + i) != symbol && i < len - 1) {
+    while (*(string + i) != symbol && i < len - 1) {
         i++;
     }
-    if (*(string1 + i) == symbol) {
-        return (string1 + i);
+    if (*(string + i) == symbol) {
+        return (string + i);
     } else {
         return NULL;
     }
@@ -75,48 +72,28 @@ char *my_memset (char *string, char symbol, int len) {
     return string;
 }
 
-/*char *my_strstr (char *string1, char *string2) {
-    int len = my_strlen (string2);
+char *my_strstr (char *string1, char *string2) {
+    int ans = 0;
     int i = 0;
     int j = 0;
-    while (i < my_strlen (string1)) {
-        while (j < len) {
-            while (*(string1 + i + j) )
-        } 
+    int len1 = my_strlen (string1);
+    int len2 = my_strlen (string2);
+    while (ans == 0) {
+        while ((*(string1 + i) != *string2) && (i < len1)) {
+            i++;
+        }
+        if (i >= len1) {
+            ans = -1;
+        } else {
+            while (*(string1 + i + j) == *(string2 + j) && i + j < len1) {j++;}
+            if (i + j >= len2) {
+                ans = 1;
+            }
+        }
+    }
+    if (ans == 1) {
+        return (string1 + i);
+    } else {
+        return NULL;
     }
 }
-
-char *my_strstr (char *string1, char *string2) {
-    int len_1 = my_strlen(string1), len_2 = my_strlen(string2);
-    char string3[16] = "";        
-
-
-        //if *(string1 + i) == *(string2) && *(string1 + i + 1) == *(string2 + 1) && (...) ==> ответ 
-        //надо попробовать через strchr и memchr
-}*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*int i;
-int *arr =[1,2,3];
-for (size_t i = 0; i < 2; i++)
-{
-    arr[i] === i[arr] === *(arr + i)
-    arr++
-
-}*/
