@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <assert.h>
 
 int my_strlen (const char *string) {
     int i = 0;
@@ -11,6 +12,12 @@ int my_strlen (const char *string) {
 }//работает
 
 int my_strcmp (char *string1, char *string2) {
+    if (string1 == NULL) {
+        string1 = "";
+    }
+    if (string2 == NULL) {
+        string2 = "";
+    }
     while (*(string1) == *string2 && *string1 != '\0') {
         string1++;
         string2++;
@@ -76,22 +83,31 @@ char *my_strstr (char *string1, char *string2) {
     int ans = 0;
     int i = 0;
     int j = 0;
+    char a = '\0';
     int len1 = my_strlen (string1);
     int len2 = my_strlen (string2);
     while (ans == 0) {
-        while ((*(string1 + i) != *string2) && (i < len1)) {
+        if (a == *string2) {
             i++;
         }
+        while ((*(string1 + i) != *string2) && (i <= len1)) {
+            i++;           
+        }
+        a = *(string1 + i);
         if (i >= len1) {
             ans = -1;
         } else {
-            while (*(string1 + i + j) == *(string2 + j) && i + j < len1) {j++;}
-            if (i + j >= len2) {
+            j = 0;
+            while ((*(string1 + i + j) == *(string2 + j)) && (i + j < len1)) {
+                j++;
+            }
+            if ((i + j) >= len2) { //!!!!!!!!!!!!!!! даже если не правильно, он досчитывает j и i + j превышают
                 ans = 1;
             }
         }
     }
     if (ans == 1) {
+        printf ("%s\n", string1 + i);
         return (string1 + i);
     } else {
         return NULL;

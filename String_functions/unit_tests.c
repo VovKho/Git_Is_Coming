@@ -1,60 +1,89 @@
 //geroyam slava
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include "functions.h"
+#include "unit_tests.h"
 
-
-void test_my_strlen () { //работает
+test test_my_strlen () { //работает
     char string[] = "hello\n";
-    printf ("%d\n", my_strlen (string));
-    if (my_strlen(string) == 6) {
+    if (my_strlen (string) == 6) {
         printf ("test_my_strlen - YES\n");
+        return YES;
     } else {
         printf ("test_my_strlen - NO\n");
+        return NO;
     }
 }
 
-void test_my_strcmp () {
+test test_my_strcmp () {
     char string1[] = "kek";
     char string2[] = "kek";
     char string3[] = "keek";
-    printf ("%d\n", my_strcmp (string1, string2));
-    printf ("%d\n", my_strcmp (string1, string3));
-    printf ("%d\n", my_strcmp (string3, string1));
-    if (my_strcmp (string1, string2) == 0 && my_strcmp (string1, string3) > 0 && my_strcmp (string3, string1) < 0) {
-        printf ("test_my_strcmp - YES\n");
-    } else {
+    if (my_strcmp (string1, string2) != 0) {
         printf ("test_my_strcmp - NO\n");
+        return NO;
+    }
+    else if (my_strcmp (string1, string3) <= 0) {
+        printf ("test_my_strcmp - NO\n");
+        return NO;
+    }
+    else if (my_strcmp (string3, string1) >= 0) {
+        printf ("test_my_strcmp - NO\n");
+        return NO;
+    }
+    else {
+        printf ("test_my_strcmp - YES\n");
+        return YES;
     }
 }
 
-void test_my_strcpy () {
+test test_my_strcpy () {
     char string1[] = "hello";
     char string2[] = "c";
     char string3[] = "";
     char string[16] = "";
-    if (my_strcmp (my_strcpy (string, string1), string1) == 0 && my_strcmp (my_strcpy (string, string2), string2) == 0 && my_strcmp (my_strcpy (string, string3), string3) == 0) {
-        printf ("test_my_strcpy - YES\n");
-    } else {
+    if (my_strcmp (my_strcpy (string, string1), string1) != 0) {
         printf ("test_my_strcpy - NO\n");
+        return NO;
+    }
+    else if (my_strcmp (my_strcpy (string, string2), string2) != 0) {
+        printf ("test_my_strcpy - NO\n");
+        return NO;
+    }
+    else if (my_strcmp (my_strcpy (string, string3), string3) != 0) {
+        printf ("test_my_strcpy - NO\n");
+        return NO;
+    } else {
+        printf ("test_my_strcpy - YES\n");
+        return YES;
     }
 }
 
-void test_my_memcpy () {
+test test_my_memcpy () {
     char BigString[] = "hello";
-    char StringCopy[16] = "";
-    char string1[] = "hell";
+    char *StringCopy = calloc (16, sizeof (char));
+    char string1[] = "h";
     char string2[] = "he";
-    char string3[] = "h";
-    int len1 = 4;
+    char string3[] = "hell";
+    int len1 = 1;
     int len2 = 2;
-    int len3 = 1;
-    if (my_strcmp (my_memcpy (BigString, StringCopy, len1), string1) == 0 && my_strcmp (my_memcpy (BigString, StringCopy, len2), string2) == 0 && my_strcmp (my_memcpy (BigString, StringCopy, len3), string3) == 0) {
-        printf ("test_my_memcpy - YES\n");
-    } else {
+    int len3 = 4;
+    if (my_strcmp (my_memcpy (StringCopy, BigString, len1), string1) != 0) {
         printf ("test_my_memcpy - NO\n");
+        return NO;
+    } 
+    else if (my_strcmp (my_memcpy (StringCopy, BigString, len2), string2) != 0) {
+        printf ("test_my_memcpy - NO\n");
+        free (StringCopy);
+        return NO;
     }
+    else if (my_strcmp (my_memcpy (StringCopy, BigString, len3), string3) != 0) {
+        printf ("test_my_memcpy - NO\n");
+        free (StringCopy);
+        return NO;
+    } else {
+        printf ("test_my_memcpy - YES\n");
+        free (StringCopy);
+        return NO;
+    }
+    free (StringCopy);
 }
 
 /*void test_my_strdup () {
@@ -84,63 +113,90 @@ void test_my_memcpy () {
     }
 }*/
 
-void test_my_strchr () {
+test test_my_strchr () {
     char string[] = "hello";
     char symbol1 = 'l';
     char string1[] = "llo";
-    char symbol2 = 'a';
-    char *string2 = NULL;
-    char symbol3 = 'H';
-    char *string3 = NULL;
-    printf ("%d", my_strcmp (my_strchr (string, symbol1), string1));
-    printf ("%d", my_strcmp (my_strchr (string, symbol2), "(null)"));
-    printf ("%d", my_strcmp (my_strchr (string, symbol3), "(null)"));
-    if (my_strcmp (my_strchr (string, symbol1), string1) == 0 && my_strcmp (my_strchr (string, symbol2), string2) == 0 && my_strcmp (my_strchr (string, symbol3), string3) == 0) {
-        printf ("test_my_strchr - YES\n");
-    } else {
+    char symbol2 = 'e';
+    char string2[] = "ello";
+    char symbol3 = 'h';
+    char string3[] = "hello";
+    if (my_strcmp (my_strchr (string, symbol1), string1) != 0) {
         printf ("test_my_strchr - NO\n");
+        return NO;
     }
-    printf ("test_my_strchr");
+    else if (my_strcmp (my_strchr (string, symbol2), string2) != 0) {
+        printf ("test_my_strchr - NO\n");
+        return NO;
+    }
+    else if (my_strcmp (my_strchr (string, symbol3), string3) != 0) {
+        printf ("test_my_strchr - NO\n");
+        return NO;
+    } else {
+        printf ("test_my_strchr - YES\n");
+        return YES;
+    }
 }
 
-void test_my_memchr () {
+test test_my_memchr () {
     char string[] = "hello";
     char symbol1 = 'l';
     char string1[] = "llo";
     int len1 = 4;
-    char symbol2 = 'l';
+    char symbol2 = 'H';
     char *string2 = NULL;
     int len2 = 2;
     char symbol3 = 'a';
-    char string3[] = "a";
+    char *string3 = NULL;
     int len3 = 4;
-    if (my_strcmp (my_strchr (string, symbol1), string1) == 0 && my_strcmp (my_strchr (string, symbol2), string2) == 0 && my_strcmp (my_strchr (string, symbol3), string3) == 0) {
-        printf ("test_my_strchr - YES\n");
-    } else {
-        printf ("test_my_strchr - NO\n");
+    if (my_strcmp (my_memchr (string, symbol1, len1), string1) != 0) {
+        printf ("test_my_memchr - NO\n");
+        return NO;
     }
+    else if (my_strcmp (my_memchr (string, symbol2, len2), string2) != 0) {
+        printf ("test_my_memchr - NO\n");
+        //printf ("%s", my_memchr (string, symbol2));
+        return NO;
+    }
+    else if (my_strcmp (my_memchr (string, symbol3, len3), string3) != 0) {
+        printf ("test_my_memchr - NO\n");
+        return NO;
+    } else {
+        printf ("test_my_memchr - YES\n");
+        return YES;
+    }
+    return YES;
 }
 
-void test_my_memset () {
+test test_my_memset () {
     char string[] = "EASPORTS";
-    char symbol1 = 'E';
-    int len1 = 8;
-    char string1[] = "EEEEEEEE";
-    char symbol2 = 'i';
-    int len2 = 3;
-    char string2[] = "iiiPORTS";
-    char symbol3 = ' ';
-    int len3 = 5;
-    char string3[] = "     RTS";
-    printf ("test_my_memset");
-    if (my_strcmp (my_memset (string, symbol1, len1), string1) == 0 && my_strcmp (my_memset (string, symbol2, len2), string2) == 0 && my_strcmp (my_memset (string, symbol3, len3), string3) == 0) {
-        printf ("test_my_memset - YES\n");
-    } else {
+    char symbol1 = 'i';
+    int len1 = 3;
+    char string1[] = "iiiPORTS";
+    char symbol2 = ' ';
+    int len2 = 5;
+    char string2[] = "     RTS";
+    char symbol3 = 'E';
+    int len3 = 8;
+    char string3[] = "EEEEEEEE";
+    if (my_strcmp (my_memset (string, symbol1, len1), string1) != 0) {
         printf ("test_my_memset - NO\n");
+        return NO;
+    }
+    else if (my_strcmp (my_memset (string, symbol2, len2), string2) != 0) {
+        printf ("test_my_memset - NO\n");
+        return NO;
+    }
+    else if (my_strcmp (my_memset (string, symbol3, len3), string3) != 0) {
+        printf ("test_my_memset - NO\n");
+        return NO;
+    } else {
+        printf ("test_my_memset - YES\n");
+        return NO;
     }
 }
 
-void test_my_strstr () {
+test test_my_strstr () {
     char BigString[] = "BigbigString";
     char string1[] = "Big";
     char RetString1[] = "BigbigString";
@@ -148,39 +204,26 @@ void test_my_strstr () {
     char RetString2[] = "bigString";
     char string3[] = "biG";
     char *RetString3 = NULL;
-    printf ("test_my_strstr");
-    if (my_strcmp (my_strstr (BigString, string1), RetString1) == 0 && my_strcmp (my_strstr (BigString, string2), RetString2) == 0 && my_strcmp (my_strstr (BigString, string3), RetString3) == 0) {
-        printf ("test_my_strstr - YES\n");
+    if (my_strcmp (my_strstr (BigString, string1), RetString1) != 0) {
+        printf ("test_my_strstr - NO1\n");
+        return NO;
+    } 
+    else if (my_strcmp (my_strstr (BigString, string2), RetString2) != 0) {
+        printf ("test_my_strstr - NO2\n");
+        return NO;
+    } 
+    else if (my_strcmp (my_strstr (BigString, string3), RetString3) != 0) {
+        printf ("test_my_strstr - NO3\n");
+        return NO;
     } else {
-        printf ("test_my_strstr - NO\n");
+        printf ("test_my_strstr - YES\n");
+        return YES;
     }
-    // if (my_strcmp (my_strstr (BigString, string1), RetString1) != 0) {
-    //     return error; 
-    // }
-    //рубрика эксперимент
 }
 
-// int sum(int a, int b) {
-//     return a + b;
-// }
-
-// error test_sum(){
-//     int x_1 = 10, x_2 = 23;
-//     if (sum(x_1, x_2) != 33) {
-//         printf("sum broke >_<\n");
-//         return error;
-//     }
-//     return ok;
-// }
-
-
-
-
 void run_tests () {
-    // assert(ok == test_sum());
-    // assert ( OK == test_my_memcpy());
-    test_my_strlen ();
-    test_my_strcmp ();
+    assert (YES == test_my_strlen());
+    assert (YES == test_my_strcmp());
     test_my_strcpy ();
     test_my_memcpy ();
     //test_my_strdup ();
