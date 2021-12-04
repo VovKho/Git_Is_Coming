@@ -81,37 +81,39 @@ test test_my_memcpy () {
     } else {
         printf ("test_my_memcpy - YES\n");
         free (StringCopy);
-        return NO;
+        return YES;
     }
     free (StringCopy);
 }
 
-/*void test_my_strdup () {
+test test_my_strdup () {
     char string1[] = "hello";
     char string2[] = "hi";
     char string3[] = "hey";
     int i = 0;
-    char StringCopy[16] = my_strdup (string1);
-    if (my_strcmp (StringCopy, string1) == 0) {
+    char *StringCopy1 = my_strdup (string1);
+    if (my_strcmp (StringCopy1, string1) == 0) {
         i++;
     } 
-    free (StringCopy);
-    char StringCopy[16] = my_strdup (string2);
-    if (my_strcmp (StringCopy, string2) == 0) {
+    free (StringCopy1);
+    char *StringCopy2 = my_strdup (string2);
+    if (my_strcmp (StringCopy2, string2) == 0) {
         i++;
     }
-    free (StringCopy);
-    char StringCopy[16] = my_strdup (string3);
-    if (my_strcmp (StringCopy, string3) == 0) {
+    free (StringCopy2);
+    char *StringCopy3 = my_strdup (string3);
+    if (my_strcmp (StringCopy3, string3) == 0) {
         i++;
     }
-    free (StringCopy);
+    free (StringCopy3);
     if (i == 3) {
-        printf ("test_my_strcpy - YES\n");
+        printf ("test_my_strdup - YES\n");
+        return YES;
     } else {
-        printf ("test_my_strcpy - NO\n");
+        printf ("test_my_strdup - NO\n");
+        return NO;
     }
-}*/
+}
 
 test test_my_strchr () {
     char string[] = "hello";
@@ -155,7 +157,6 @@ test test_my_memchr () {
     }
     else if (my_strcmp (my_memchr (string, symbol2, len2), string2) != 0) {
         printf ("test_my_memchr - NO\n");
-        //printf ("%s", my_memchr (string, symbol2));
         return NO;
     }
     else if (my_strcmp (my_memchr (string, symbol3, len3), string3) != 0) {
@@ -192,7 +193,7 @@ test test_my_memset () {
         return NO;
     } else {
         printf ("test_my_memset - YES\n");
-        return NO;
+        return YES;
     }
 }
 
@@ -224,11 +225,11 @@ test test_my_strstr () {
 void run_tests () {
     assert (YES == test_my_strlen());
     assert (YES == test_my_strcmp());
-    test_my_strcpy ();
-    test_my_memcpy ();
-    //test_my_strdup ();
-    test_my_strchr ();
-    test_my_memchr ();
-    test_my_memset ();
-    test_my_strstr ();
+    assert (YES == test_my_strcpy());
+    assert (YES == test_my_memcpy());
+    assert (YES == test_my_strdup());
+    assert (YES == test_my_strchr());
+    assert (YES == test_my_memchr());
+    assert (YES == test_my_memset());
+    assert (YES == test_my_strstr());
 }
