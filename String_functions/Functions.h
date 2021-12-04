@@ -5,7 +5,7 @@ int my_strcmp (char *string1, char *string2);
 
 char *my_strcpy (char *string2, const char* string1);
 
-char *my_memcpy (char *string2, const char *string1, int len);
+void *my_memcpy (void *string2, const void *string1, size_t len);
 
 char *my_strdup (char *string);
 

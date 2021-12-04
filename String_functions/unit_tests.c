@@ -57,33 +57,41 @@ test test_my_strcpy () {
 }
 
 test test_my_memcpy () {
-    char BigString[] = "hello";
-    char *StringCopy = calloc (16, sizeof (char));
+    char BigString1[] = "hello";
+    char BigString2[] = {1,2,3,4,5,6};
+    char *StringCopy1 = calloc (16, sizeof (char));
+    int *StringCopy2 = calloc (16, sizeof (int));
     char string1[] = "h";
     char string2[] = "he";
     char string3[] = "hell";
+    int string4[] = {1,2,3};
     int len1 = 1;
     int len2 = 2;
     int len3 = 4;
-    if (my_strcmp (my_memcpy (StringCopy, BigString, len1), string1) != 0) {
+    if (my_strcmp (my_memcpy (StringCopy1, BigString1, len1), string1) != 0) {
         printf ("test_my_memcpy - NO\n");
+        free (StringCopy1);
+        free (StringCopy2);
         return NO;
     } 
-    else if (my_strcmp (my_memcpy (StringCopy, BigString, len2), string2) != 0) {
+    else if (my_strcmp (my_memcpy (StringCopy1, BigString1, len2), string2) != 0) {
         printf ("test_my_memcpy - NO\n");
-        free (StringCopy);
+        free (StringCopy1);
+        free (StringCopy2);
         return NO;
     }
-    else if (my_strcmp (my_memcpy (StringCopy, BigString, len3), string3) != 0) {
+    else if (my_strcmp (my_memcpy (StringCopy1, BigString1, len3), string3) != 0) {
         printf ("test_my_memcpy - NO\n");
-        free (StringCopy);
+        free (StringCopy1);
+        free (StringCopy2);
         return NO;
-    } else {
+    }
+    else {
         printf ("test_my_memcpy - YES\n");
-        free (StringCopy);
+        free (StringCopy1);
+        free (StringCopy2);
         return YES;
     }
-    free (StringCopy);
 }
 
 test test_my_strdup () {

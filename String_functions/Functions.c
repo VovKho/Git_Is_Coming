@@ -34,13 +34,13 @@ char *my_strcpy (char *string2, const char* string1) { //копирование 
     return string2;
 }
 
-char *my_memcpy (char *string2, const char *string1, int len) { //копирование определённого количества символов из второй строки в пераую
+void *my_memcpy (void *mas2, const void *mas1, size_t len) { //копирование определённого количества символов из второй строки в первую
     int j = 0;
     for (j = 0; j < len; j++) {
-        *(string2 + j) = *(string1 + j); 
+        *((char*)mas2 + j) = *((char*)mas1 + j); 
     }
-    *(string2 + j) = '\0';
-    return string2;
+    *((char*)mas2 + j) = '\0';
+    return mas2;
 }
 
 char *my_strdup (char *string) { //создаёт копию строки
