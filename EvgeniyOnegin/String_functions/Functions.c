@@ -1,7 +1,4 @@
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <assert.h>
+#include "functions.h"
 
 int my_strlen (const char *string) { //вычисление длины строки
     int i = 0;
@@ -11,7 +8,7 @@ int my_strlen (const char *string) { //вычисление длины стро�
     return i;
 }
 
-int my_strcmp (char *string1, char *string2) { //сравнение строк
+int my_strcmp (const char *string1, const char *string2) { //сравнение строк
     if (string1 == NULL) {
         string1 = "";
     }

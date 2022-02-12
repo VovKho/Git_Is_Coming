@@ -1,11 +1,15 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <assert.h>
 
 int my_strlen (const char *string);
 
-int my_strcmp (char *string1, char *string2);
+int my_strcmp (const char *string1, const char *string2);
 
 char *my_strcpy (char *string2, const char* string1);
 
-void *my_memcpy (void *string2, const void *string1, size_t len);
+void *my_memcpy (void *mas2, const void *mas1, size_t len);
 
 char *my_strdup (char *string);
 
