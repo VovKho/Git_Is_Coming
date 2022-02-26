@@ -1,15 +1,16 @@
-
 #include <locale.h>
 #include "Func.h"
 
-
 int main () {
-    setlocale(LC_ALL, "Rus");
+
+    do_file();
+
     FILE *file = fopen("EvgeniyOnegin.txt", "rb"); //открытие файла
 
     fseek (file, 0, SEEK_END);
     size_t file_size = ftell(file); //размер файла
     fseek (file, 0, SEEK_SET);
+
 
     char *long_long = ((char*)calloc(sizeof(char), file_size));
     fread (long_long, sizeof(char), file_size, file); //копирование в оперативную память
@@ -22,11 +23,16 @@ int main () {
 
     strings = my_read (strings, long_long, file_size); //создание массива всех строк
     
+    for (int i = 0; i < num; i++)
+    {
+        printf ("%s\n", strings[i]); //вывод всех строк в изначальном виде
+    }
+    
     qsort (strings, num, sizeof(*strings), compar); //сортировка строк в лексикографическом порядке
 
     for (int i = 0; i < num; i++)
     {
-        printf ("%s  ", strings[i]); //вывод всех строк в правильном виде
+        printf ("%s\n", strings[i]); //вывод всех строк в правильном виде
     }
 
     fclose(file);
