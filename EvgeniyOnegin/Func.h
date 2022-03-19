@@ -1,4 +1,4 @@
-#include "String_functions\Functions.h"
+#include "String_functions/Functions.h"
 
 void do_file ();
 

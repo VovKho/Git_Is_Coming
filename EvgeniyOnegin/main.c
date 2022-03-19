@@ -25,16 +25,21 @@ int main () {
     
     for (int i = 0; i < num; i++)
     {
-        printf ("%s\n", strings[i]); //вывод всех строк в изначальном виде
+        printf ("%s\n\r", strings[i]); //вывод всех строк в изначальном виде
     }
     
     qsort (strings, num, sizeof(*strings), compar); //сортировка строк в лексикографическом порядке
 
     for (int i = 0; i < num; i++)
     {
-        printf ("%s\n", strings[i]); //вывод всех строк в правильном виде
+        printf ("%s\n\r", strings[i]); //вывод всех строк в правильном виде
     }
-
+    free (strings);
     fclose(file);
     return 0;
 }
+
+
+
+
+

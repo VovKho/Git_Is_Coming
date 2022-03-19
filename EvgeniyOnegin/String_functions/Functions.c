@@ -1,4 +1,4 @@
-#include "functions.h"
+#include "Functions.h"
 
 int my_strlen (const char *string) { //вычисление длины строки
     int i = 0;

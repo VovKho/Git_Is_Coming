@@ -1,4 +1,4 @@
-#include "func.h"
+#include "Func.h"
 
 void delite_smth (char *long_long) { //меняет все управляющие знаки на \0 и удаляет лишние \0
 
