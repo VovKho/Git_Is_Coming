@@ -11,10 +11,10 @@ void do_file () {
     {
         fprintf (file, "%c", rand() % (y-x) + x);    
     }
-    fprintf (file, "\r");
+    fprintf (file, "\n");
     }
     
-    fprintf(file, "%d\r", 234);
-    fprintf(file, "%d\r", 123); //добавим числа для красоты
+    fprintf(file, "%d\n", 234);
+    fprintf(file, "%d\n", 123); //добавим числа для красоты
     fclose (file);
 }
