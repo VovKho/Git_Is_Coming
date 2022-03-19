@@ -34,7 +34,8 @@ int main () {
     {
         printf ("%s\n\r", strings[i]); //вывод всех строк в правильном виде
     }
-    free (long_long, strings);
+    free (long_long);
+    free (strings);
     fclose(file);
     return 0;
 }
