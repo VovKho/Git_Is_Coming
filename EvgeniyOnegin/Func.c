@@ -23,7 +23,6 @@ void delete_smth (char *long_long) { //меняет все управляющи�
         *to = *from;
         to++;
         from++;
-        printf ("symbol - %c\n", *from);
     }
 }
 

@@ -9,16 +9,12 @@ int main () {
 
     fseek (file, 0, SEEK_END);
     size_t file_size = ftell(file); //размер файла
-    fseek (file, 0, SEEK_SET);
-    printf ("file_size = %d\n", file_size);    
+    fseek (file, 0, SEEK_SET);   
 
     char *long_long = ((char*)calloc(sizeof(char), file_size)); //посмотреть, почему не хватает буфера
     fread (long_long, sizeof(char), file_size, file); //копирование в оперативную память
 
     delete_smth (long_long); //перевод в более удобный формат
-    printf ("%lu\n", strlen (long_long));
-    printf ("after delete_smth - %s\n", long_long);
-    printf ("%lu\n", strlen (long_long));
 
     size_t num = count_lines (long_long, file_size); //считывание количества строк
 
