@@ -14,7 +14,7 @@ void do_file () {
     fprintf (file, "\n");
     }
     
-    fprintf(file, "%d\n", 234);
-    fprintf(file, "%d\n", 123); //добавим числа для красоты
+    fprintf(file, "%s\n", "234");
+    fprintf(file, "%s\n", "123"); //добавим числа для красоты
     fclose (file);
 }

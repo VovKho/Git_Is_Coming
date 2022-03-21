@@ -1,10 +1,10 @@
 #include "Func.h"
 
-void delite_smth (char *long_long) { //меняет все управляющие знаки на \0 и удаляет лишние \0
-
+void delete_smth (char *long_long) { //меняет все управляющие знаки на \0 и удаляет лишние \0
     char *from = long_long, *to = long_long;
 
     while (*long_long != '\0') {
+        
         if (*long_long == '\r' || *long_long == '\n' || *long_long == ' ') {
             *long_long = '\0';
         }
@@ -23,6 +23,7 @@ void delite_smth (char *long_long) { //меняет все управляющи�
         *to = *from;
         to++;
         from++;
+        printf ("symbol - %c\n", *from);
     }
 }
 
